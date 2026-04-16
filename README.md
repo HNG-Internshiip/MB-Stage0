@@ -1,51 +1,132 @@
-# Welcome to your Expo app 👋
+# Smart Utility Toolkit
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A feature-rich mobile utility app built with **React Native + Expo Router**. Provides seven essential everyday tools in a single, beautifully designed app with a consistent dark theme and smooth bottom-tab navigation.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+| Tab | Tool | Description |
+|-----|------|-------------|
+| ⚖️ | **Unit Converter** | Length, Weight, Temperature, Volume, Speed, Area |
+| 💱 | **Currency Converter** | 15 world currencies with indicative exchange rates |
+| 🔢 | **Calculator** | Full arithmetic calculator with expression display |
+| 🏋️ | **BMI Calculator** | Metric & Imperial with color-coded category scale |
+| ⏱️ | **Time Tools** | Stopwatch with lap tracking + circular countdown timer |
+| ✅ | **Task Manager** | Create, edit, complete & delete tasks with offline persistence |
+| 📝 | **Notes** | Color-tagged notes with full create/edit/delete support |
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## Task Manager (Stage 1 Feature)
 
-In the output, you'll find options to open the app in a
+The Task Manager supports full offline CRUD functionality:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Create** tasks with a title, optional note, and priority level (Low / Medium / High)
+- **Complete** tasks via a tap-to-toggle checkbox
+- **Edit** tasks through a bottom sheet form
+- **Delete** tasks with a confirmation prompt
+- **Filter** tasks by All / Active / Completed
+- **Progress bar** showing overall completion percentage
+- **Clear completed** button to bulk-remove finished tasks
+- **Persisted locally** using `AsyncStorage` — data survives app restarts
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Tech Stack
 
-When you're ready, run:
+- [Expo](https://expo.dev/) (SDK 51+)
+- [Expo Router](https://expo.github.io/router/) — file-based navigation
+- [React Native](https://reactnative.dev/)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) — offline persistence
+- [react-native-svg](https://github.com/software-mansion/react-native-svg) — countdown timer ring
+- [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) — safe area insets
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Expo CLI: `npm install -g expo-cli`
+- iOS Simulator / Android Emulator **or** the Expo Go app on your device
+
+### Installation
 
 ```bash
-npm run reset-project
+# 1. Clone the repo
+git clone https://github.com/your-username/smart-utility-toolkit.git
+cd smart-utility-toolkit
+
+# 2. Install dependencies
+npm install
+
+# 3. Install native packages
+npx expo install \
+  @react-native-async-storage/async-storage \
+  react-native-svg \
+  react-native-safe-area-context \
+  expo-status-bar
+
+# 4. Start the dev server
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Press `a` for Android, `i` for iOS, or scan the QR code with Expo Go.
 
-## Learn more
+### Building an APK (for Appetize)
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+# Install EAS CLI
+npm install -g eas-cli
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Log in to Expo
+eas login
 
-## Join the community
+# Configure (first time only)
+eas build:configure
 
-Join our community of developers creating universal apps.
+# Build Android APK
+eas build --platform android --profile preview
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# MB-Stage0
+Upload the resulting `.apk` to [appetize.io](https://appetize.io) to generate a public preview link.
+
+---
+
+## Project Structure
+
+```
+smart-utility-toolkit/
+├── app/
+│   ├── _layout.tsx          # Root layout + SafeAreaProvider
+│   └── (tabs)/
+│       ├── _layout.tsx      # Bottom tab navigator (7 tabs)
+│       ├── index.tsx        # Unit Converter
+│       ├── currency.tsx     # Currency Converter
+│       ├── calculator.tsx   # Calculator
+│       ├── bmi.tsx          # BMI Calculator
+│       ├── time.tsx         # Stopwatch & Countdown Timer
+│       ├── tasks.tsx        # Task Manager (Stage 1)
+│       └── notes.tsx        # Notes
+├── constants/
+│   └── theme.ts             # Shared color palette
+└── README.md
+```
+
+---
+
+## Architecture Notes
+
+- **File-based routing** via Expo Router keeps navigation declarative and scalable
+- **Shared theme** (`constants/theme.ts`) ensures visual consistency across all screens
+- **AsyncStorage** calls are isolated inside `useEffect` hooks — reads on mount, writes on every state change
+- All screens use `SafeAreaView` for correct rendering on notched and gesture-nav devices
+- No external UI libraries — all components are custom-built with `StyleSheet`
+
+---
+
+## License
+
+MIT

@@ -9,6 +9,7 @@ const tabs = [
   { name: 'calculator', label: 'Calc',     icon: '🔢',  color: theme.accent2 },
   { name: 'bmi',        label: 'BMI',      icon: '🏋️', color: theme.success },
   { name: 'time',       label: 'Time',     icon: '⏱️',  color: theme.pink    },
+  { name: 'tasks',      label: 'Tasks',    icon: '✅',  color: theme.accent  },
   { name: 'notes',      label: 'Notes',    icon: '📝',  color: theme.yellow  },
 ];
 
