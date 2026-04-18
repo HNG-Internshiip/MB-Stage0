@@ -135,7 +135,7 @@ export default function Onboarding() {
   const skip = () => finish();
 
   return (
-    <SafeAreaView style={[s.safe, { backgroundColor: current.bg }]} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={[s.safe, { backgroundColor: current.bg }]}   edges={['top', 'left', 'right', 'bottom']}>
       {/* Skip */}
       {!isLast && (
         <TouchableOpacity style={s.skip} onPress={skip}>
@@ -178,7 +178,7 @@ const s = StyleSheet.create({
   safe:     { flex: 1 },
   skip:     { alignSelf: 'flex-end', paddingHorizontal: 24, paddingVertical: 14 },
   skipText: { color: theme.muted, fontSize: 14, fontWeight: '600' },
-  bottom:   { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 28, paddingVertical: 24, paddingBottom: 32 },
+  bottom:   { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 28, paddingVertical: 24 },
   nextBtn:  { paddingHorizontal: 32, paddingVertical: 14, borderRadius: 30 },
   nextText: { color: '#fff', fontWeight: '800', fontSize: 15 },
 });
