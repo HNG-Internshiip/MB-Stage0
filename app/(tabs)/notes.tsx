@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  ScrollView, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform,
+  ScrollView, StyleSheet, KeyboardAvoidingView, Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import theme from '@/constants/theme';
 
 type Note = { id: number; title: string; body: string; date: string; color: string };
@@ -77,7 +78,7 @@ export default function Notes() {
 
   // ── List view ──────────────────────────────────────────────────────────────
   return (
-    <SafeAreaView style={s.safe}>
+    <SafeAreaView style={s.safe} edges={['top', 'left', 'right']}>
       <View style={s.header}>
         <Text style={s.headerIcon}>📝</Text>
         <View style={{ flex: 1 }}>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  ScrollView, StyleSheet, SafeAreaView,
+  ScrollView, StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import theme from '@/constants/theme';
 
 type Category = { label: string; color: string };
@@ -36,7 +37,7 @@ export default function BMICalc() {
   };
 
   return (
-    <SafeAreaView style={s.safe}>
+    <SafeAreaView style={s.safe} edges={['top', 'left', 'right']}>
       <View style={s.header}>
         <Text style={s.headerIcon}>🏋️</Text>
         <View>

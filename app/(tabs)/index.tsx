@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  ScrollView, StyleSheet, SafeAreaView,
+  ScrollView, StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import theme from '@/constants/theme';
 
 const UNITS: Record<string, Record<string, number> | null> = {
@@ -40,7 +41,7 @@ export default function UnitConverter() {
   const swap = () => { setFrom(to); setTo(from); setResult(null); };
 
   return (
-    <SafeAreaView style={s.safe}>
+    <SafeAreaView style={s.safe} edges={['top', 'left', 'right']}>
       {/* Header */}
       <View style={s.header}>
         <Text style={s.headerIcon}>⚖️</Text>

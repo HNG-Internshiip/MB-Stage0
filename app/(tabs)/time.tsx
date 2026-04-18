@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  ScrollView, StyleSheet, SafeAreaView,
+  ScrollView, StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Circle, Text as SvgText } from 'react-native-svg';
 import theme from '@/constants/theme';
 
@@ -132,7 +133,7 @@ export default function TimeTools() {
   const [tab, setTab] = useState<'stopwatch' | 'timer'>('stopwatch');
 
   return (
-    <SafeAreaView style={s.safe}>
+    <SafeAreaView style={s.safe} edges={['top', 'left', 'right']}>
       <View style={s.header}>
         <Text style={s.headerIcon}>⏱️</Text>
         <View>
