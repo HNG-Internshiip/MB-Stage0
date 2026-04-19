@@ -1,16 +1,18 @@
 import { Tabs } from 'expo-router';
-import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import theme from '@/constants/theme';
 
-const tabs = [
-  { name: 'index',      label: 'Units',    icon: '⚖️',  color: theme.accent  },
-  { name: 'currency',   label: 'Currency', icon: '💱',  color: theme.accent3 },
-  { name: 'calculator', label: 'Calc',     icon: '🔢',  color: theme.accent2 },
-  { name: 'bmi',        label: 'BMI',      icon: '🏋️', color: theme.success },
-  { name: 'time',       label: 'Time',     icon: '⏱️',  color: theme.pink    },
-  { name: 'tasks',      label: 'Tasks',    icon: '✅',  color: theme.accent  },
-  { name: 'notes',      label: 'Notes',    icon: '📝',  color: theme.yellow  },
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
+const tabs: { name: string; label: string; icon: IoniconsName; iconFocused: IoniconsName; color: string }[] = [
+  { name: 'index',      label: 'Units',    icon: 'swap-horizontal-outline',  iconFocused: 'swap-horizontal',  color: theme.accent  },
+  { name: 'currency',   label: 'Currency', icon: 'cash-outline',             iconFocused: 'cash',             color: theme.orange  },
+  { name: 'calculator', label: 'Calc',     icon: 'calculator-outline',       iconFocused: 'calculator',       color: theme.teal    },
+  { name: 'bmi',        label: 'BMI',      icon: 'body-outline',             iconFocused: 'body',             color: theme.success },
+  { name: 'time',       label: 'Time',     icon: 'timer-outline',            iconFocused: 'timer',            color: theme.pink    },
+  { name: 'tasks',      label: 'Tasks',    icon: 'checkbox-outline',         iconFocused: 'checkbox',         color: theme.accent  },
+  { name: 'notes',      label: 'Notes',    icon: 'document-text-outline',    iconFocused: 'document-text',    color: theme.yellow  },
 ];
 
 export default function TabsLayout() {
@@ -38,16 +40,10 @@ export default function TabsLayout() {
           name={t.name}
           options={{
             title: t.label,
-            tabBarLabel: t.label,
-            tabBarIcon: ({ focused }) => {
-              const { Text } = require('react-native');
-              return (
-                <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.45 }}>
-                  {t.icon}
-                </Text>
-              );
-            },
             tabBarActiveTintColor: t.color,
+            tabBarIcon: ({ focused, color }) => (
+              <Ionicons name={focused ? t.iconFocused : t.icon} size={22} color={color} />
+            ),
           }}
         />
       ))}
